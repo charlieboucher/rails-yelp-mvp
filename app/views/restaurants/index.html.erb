@@ -1,0 +1,15 @@
+
+  <div class="container">
+    <h2> Best restaurants in town</h2>
+    <%= link_to "Add a restaurant", new_restaurant_path, {:class => "btn-success btn"} %>
+    <% average = [] %>
+    <% @restaurants.each do |restaurant| %>
+      <h4><%= link_to restaurant.name, restaurant_path(restaurant) %></h4>
+      <% restaurant.reviews.each do |review| %>
+        <% average << review.rating %>
+      <% end %>
+      <h5><%= "Average rating: #{(average.inject{ |sum, el| sum + el}.to_f. / average.size).round(2)}/5" %></h5>
+      <h5><%= restaurant.category %></h5>
+      <br>
+    <% end %>
+  </div>
